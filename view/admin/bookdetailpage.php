@@ -2,13 +2,13 @@
 require_once "./../../library/searchfile.php";
 $DBadminbook = new DBbookclass();
 
-if(isset($_GET['detailPk']) && !empty($_GET['detailPk'])){
+if (isset($_GET['detailPk']) && !empty($_GET['detailPk'])) {
 	$detailPk = $_GET['detailPk'];
-}else{
+} else {
 	$detailPk = null;
 }
 //도서 데이터 조회
-$dbbooklist = $DBadminbook-> DbdetailBook("book", "pk", $detailPk, "*");
+$dbbooklist = $DBadminbook->DbdetailBook("book", "pk", $detailPk, "*");
 $rows = mysqli_fetch_assoc($dbbooklist);
 ?>
 <html>
@@ -23,11 +23,11 @@ $rows = mysqli_fetch_assoc($dbbooklist);
     </head>
     <body>
         <div class="container border border-secondary listcontainer">
-	        <div class="header row bg-secondary">
-				<h3 class="align-self-center fw-bold"><a class="text-white text-decoration-none" href="bookstoreadmin.php">CMSKOREA bookstore</a></h3>
-			</div>
-			<div class="m-4">
-				<div class=" text-start mb-5">
+            <div class="header row bg-secondary">
+                <h3 class="align-self-center fw-bold"><a class="text-white text-decoration-none" href="bookstoreadmin.php">CMSKOREA bookstore</a></h3>
+            </div>
+            <div class="m-4">
+                <div class=" text-start mb-5">
                     <span class="fs-5 pagetitle">서점 관리자 페이지</span>
                     <span class="text-primary text-opacity-75 pagedescription">- 도서 세부 정보 -</span>
                 </div>
@@ -41,25 +41,25 @@ $rows = mysqli_fetch_assoc($dbbooklist);
                         <p class="fs-6" id="boardViewContent"><?php echo $rows["content"]?></p>
                     </div>
                     <div class="fs-5" id="bookDetailPath">책 폴더 위치 : <?php echo $rows["path"]?></div>
-                	<hr>
+                    <hr>
                 </div>
                 <div class="mx-5 mt-4 row">
                     <button class="btn btn-primary bg-warning border-warning col rounded-0 mx-1" id="postEdit">수 정</button>
                     <button class="col mx-1" style="border: solid 1px lightgray;" id="backList">리스트</button>
                 </div>
-			</div>
+            </div>
         </div>
         <script>
-        	$(document).ready(function () {
-	            //수정하기
-	            $(document).on('click', '#postEdit',function(){
-	               location.href = "bookedit.php?detailPk="+<?php echo $detailPk?>;
-	            });
-	            //리스트 이동
-	            $(document).on('click', '#backList',function(){
-	               location.href = 'bookstoreadmin.php'; 
-	            });
-        	});
+            $(document).ready(function () {
+                //수정하기
+                $(document).on('click', '#postEdit',function(){
+                   location.href = "bookedit.php?detailPk="+<?php echo $detailPk?>;
+                });
+                //리스트 이동
+                $(document).on('click', '#backList',function(){
+                   location.href = 'bookstoreadmin.php'; 
+                });
+            });
         </script>
     </body>
 </html>
